@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+  <title>ADD USERS</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <header id="main-header" class="bg-success text-white p-4 mb-3">
+    <div class= "container">
+      <h1 id="header-title">ADD USER</h1>
+    </div>
+  </header>
+
+  <div class="container">
+  <div>
+  <form>
+    <div class="form-group">
+      <label for="cname">USER NAME:</label>
+      <input type="text" class="form-control" id="uid" placeholder="Enter Name">
+    </div>
+    <div class="form-group">
+      <label for="link">PASSWORD:</label>
+      <input type="text" class="form-control" id="passwd" placeholder="Enter Password">
+    </div>
+    <div class="form-group">
+      <label for="cname">NAME:</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter ID">
+    </div>
+    <div class="form-group">
+      <label for="cname">isADMIN ?:</label>
+      <input type="text" class="form-control" id="char" placeholder="Enter ID">
+    </div>
+    
+    <button type="button" class="btn btn-primary" onclick="add()">ADD</button>
+  </form>
+  </div>  
+  
+</div>
+<script>
+function add(){
+  var user = {};
+  var u_uname_txt= document.getElementById("uid").value;
+  var u_pass_txt= document.getElementById("passwd").value;
+  var u_name_txt= document.getElementById("name").value;
+  var u_char_txt= +document.getElementById("char").value;
+
+
+  user.uid=u_uname_txt;
+  user.name=u_name_txt;
+  user.isAdmin=u_char_txt;
+  user.passwd=u_pass_txt;
+  user.courses=[];
+  console.log(user);
+
+  var one = JSON.parse(localStorage.getItem('usersTable'));
+  one.push(user);
+  localStorage["usersTable"] = JSON.stringify(one);
+
+  for(var i=0;i<one.length;i++)
+  {
+    console.log(one[i].uid);
+  }
+}
+</script>
+</body>
+</html>

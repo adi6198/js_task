@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+  <title>ADD COURSES</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body onload="def_gen_tab()">
+
+<header id="main-header" class="bg-success text-white p-4 mb-3">
+    <div class= "container">
+      <h1 id="header-title">Welcome User</h1>
+    </div>
+  </header>
+
+<div class="container" >
+  <div id="tbl">
+  </div>
+</div>
+<script>
+
+  function def_gen_tab(){
+    let hst = document.getElementById("tbl");
+    let hst1 = document.getElementById("tbl1");
+    if(hst.contains(hst1)){
+      hst1.querySelectorAll('tr').forEach(e => e.remove());
+      hst.removeChild(hst1);
+    }
+
+    let td4=document.createElement("TABLE");
+    td4.setAttribute("id","tbl1");
+    td4.setAttribute("border","1");
+    td4.setAttribute("style","height: 50px; width: 1000px");
+    let tr=document.createElement("TR");
+    let td1=document.createElement("TD");
+    td1.setAttribute("style","text-align: center; font-weight: bold");
+    let td2=document.createElement("TD");
+    td2.setAttribute("style","text-align: center; font-weight: bold");
+    let td3=document.createElement("TD");
+    td3.setAttribute("style","text-align: center; font-weight: bold");
+    let nametxt=document.createTextNode("Course");
+    let linktxt=document.createTextNode("Link");
+    let actiontxt=document.createTextNode("Action");
+    td1.appendChild(nametxt);
+    td2.appendChild(linktxt);
+    td3.appendChild(actiontxt);
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    td4.appendChild(tr);
+    hst.appendChild(td4);
+    add_data();
+  }
+
+  function add_data(){
+    let hst = document.getElementById("tbl1");
+    var users = JSON.parse(localStorage.getItem('usersTable'));
+    let uid=JSON.parse(localStorage.getItem("user_info"));
+    const indUserArray1 = users.findIndex(q => q.uid === uid);
+    console.log(indUserArray1);
+    let courses=users[indUserArray1].courses;
+    console.log(courses);
+    
+    
+    for(var i=0;i<courses.length;i++){
+      let tr=document.createElement("TR");
+      let td1=document.createElement("TD");
+      td1.setAttribute("style","text-align: center");
+      let td2=document.createElement("TD");
+      td2.setAttribute("style","text-align: center");
+      let td3=document.createElement("BUTTON");
+      td3.className = "btn btn-sm btn-success btn-block";
+      td3.setAttribute("onclick","setComp(this)");
+      let a=document.createElement("A");
+      a.setAttribute("href",courses[i].clink);
+      let cnametxt=document.createTextNode(courses[i].cname);
+      let clinktxt=document.createTextNode(courses[i].clink);
+      let btn=document.createTextNode("Mark as Complete");
+      let comp=document.createTextNode("Completed!!");
+      td1.appendChild(cnametxt);
+      td2.appendChild(a);
+      a.appendChild(clinktxt);
+      //td2.appendChild(clinktxt);
+      if(courses[i].status == 0){
+        td3.appendChild(btn);
+      }
+      else{
+        td3.appendChild(comp);
+      }
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+      hst.appendChild(tr);
+    }
+  }
+
+
+  function setComp(val){
+    let arr= [];
+    val.parentNode.querySelectorAll('td').forEach(item=>{
+      if (item.getAttribute('class') != "btn btn-sm btn-success btn-block") {
+        arr.push(item.innerHTML)
+      }
+    },this)
+    let users=JSON.parse(localStorage.getItem("usersTable"));
+    let uid=JSON.parse(localStorage.getItem("user_info"));
+    const indUserArray = users.findIndex(q => q.uid === uid);
+    let courses=users[indUserArray].courses;
+    const indCourseArray = courses.findIndex(q => q.cname === arr[0]);
+    let sel_course=courses[indCourseArray];
+    sel_course.status=1;
+    courses[indCourseArray]=sel_course;
+    users[indUserArray].courses=courses;
+    localStorage["usersTable"]=JSON.stringify(users);
+
+  }
+</script>
+</body>
+</html>

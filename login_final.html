@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+  <title>LOGIN</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <header id="main-header" class="bg-success text-white p-4 mb-3">
+    <div class= "container">
+      <h1 id="header-title">LOGIN</h1>
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <form>
+      <div class="form-group">
+        <label for="cname">E-Mail:</label>
+        <input type="text" class="form-control" id="uid">
+      </div>
+      <div class="form-group">
+        <label for="link">Password:</label>
+        <input type="password" class="form-control" id="passwd">
+      </div>
+      <button type="button" class="btn btn-primary" onclick="check()"> LOGIN </button>
+    </form>
+  </div>
+
+  <script>
+    function check(){
+      //var users = {};
+      var u_name_txt= document.getElementById("uid").value;
+      var u_pass_txt= document.getElementById("passwd").value;
+
+      //users = [{uid: "abc1@gmail.com", name:"admin" ,isAdmin:1 , passwd:"12345", courses:[]}];
+
+      //localStorage["usersTable"] = JSON.stringify(users);    
+      var one = JSON.parse(localStorage.getItem('usersTable'));
+      for(var i=0;i<one.length;i++)
+      {  
+        console.log(one[i].uid);
+        if(one[i].uid === u_name_txt && one[i].passwd === u_pass_txt){
+          if(one[i].isAdmin === 1){
+            window.location = "dashboard.html";
+            break;
+          }
+          else{
+            window.location = "user_dashboard.html";            
+            break;
+          }    
+        }
+      }
+      localStorage["user_info"] = JSON.stringify(u_name_txt);
+    }
+  </script>
+</body>
+</html>
