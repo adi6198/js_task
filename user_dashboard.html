@@ -1,10 +1,12 @@
+
 <html lang="en">
 <head>
-  <title>ADD COURSES</title>
+  <title>USER DASHBOARD</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 </head>
 <body onload="def_gen_tab()">
 
@@ -19,7 +21,6 @@
   </div>
 </div>
 <script>
-
   function def_gen_tab(){
     let hst = document.getElementById("tbl");
     let hst1 = document.getElementById("tbl1");
@@ -27,7 +28,6 @@
       hst1.querySelectorAll('tr').forEach(e => e.remove());
       hst.removeChild(hst1);
     }
-
     let td4=document.createElement("TABLE");
     td4.setAttribute("id","tbl1");
     td4.setAttribute("border","1");
@@ -52,10 +52,10 @@
     hst.appendChild(td4);
     add_data();
   }
-
   function add_data(){
     let hst = document.getElementById("tbl1");
     var users = JSON.parse(localStorage.getItem('usersTable'));
+    //var courses1 = JSON.parse(localStorage.getItem('coursesTable'));
     let uid=JSON.parse(localStorage.getItem("user_info"));
     const indUserArray1 = users.findIndex(q => q.uid === uid);
     console.log(indUserArray1);
@@ -73,7 +73,7 @@
       td3.className = "btn btn-sm btn-success btn-block";
       td3.setAttribute("onclick","setComp(this)");
       let a=document.createElement("A");
-      a.setAttribute("href",courses[i].clink);
+      a.setAttribute("href",'${courses[i].clink}');
       let cnametxt=document.createTextNode(courses[i].cname);
       let clinktxt=document.createTextNode(courses[i].clink);
       let btn=document.createTextNode("Mark as Complete");
@@ -94,8 +94,6 @@
       hst.appendChild(tr);
     }
   }
-
-
   function setComp(val){
     let arr= [];
     val.parentNode.querySelectorAll('td').forEach(item=>{
@@ -103,6 +101,7 @@
         arr.push(item.innerHTML)
       }
     },this)
+    console.log(arr);
     let users=JSON.parse(localStorage.getItem("usersTable"));
     let uid=JSON.parse(localStorage.getItem("user_info"));
     const indUserArray = users.findIndex(q => q.uid === uid);
@@ -113,7 +112,6 @@
     courses[indCourseArray]=sel_course;
     users[indUserArray].courses=courses;
     localStorage["usersTable"]=JSON.stringify(users);
-
   }
 </script>
 </body>
