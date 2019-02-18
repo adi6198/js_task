@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col-lg-6">
           <div class="btn-group">
-            <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" style="margin-left: 500px">Users<span class="caret"></span></button>
+            <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" style="margin-left: 500px">Users<span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
               <li><a href="manage_users.html">Manage Users</a></li>
               <li><a href="add_user.html">Add User</a></li>
@@ -29,7 +29,7 @@
       </div>
       <div class="col-lg-6">
           <div class="btn-group">
-            <button type="button" class="btn btn-primary btn-block dropdown-toggle " data-toggle="dropdown" style="margin-left: 400px">Courses<span class="caret"></span></button>
+            <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" style="margin-left: 400px">Courses<span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
               <li><a href="add_courses.html">Add Courses</a></li>
               <li><a href="assign_courses.html">Assign Courses</a></li>
@@ -37,74 +37,5 @@
         </div>
       </div>
     </div>
-
-
-	<!--<div class="container">
-		<div class="btn-group">
-		    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Users<span class="caret"></span></button>
-		    <ul class="dropdown-menu" role="menu">
-		      <li><a href="manage_users.html">Manage Users</a></li>
-		      <li><a href="add_user.html">Add User</a></li>
-		    </ul>
-	  	</div>
-
-	  	<div class="btn-group">
-		    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Courses<span class="caret"></span></button>
-		    <ul class="dropdown-menu" role="menu">
-		      <li><a href="add_courses.html">Manage Courses</a></li>
-		      <li><a href="#">Add Course</a></li>
-		    </ul>
-	  	</div>
-  	</div>-->
-
-  	<div>
-	  		<table id="tbl"></table>
-  	</div>
-
-  	<script>
-  		async function showUsers() {
-        const api_URL="https://api.myjson.com/bins/rx93a";
-            const response= await fetch(api_URL);
-            const json= await response.json();
-            let table=document.getElementById("tbl");
-
-            loop:for(let i in json)
-            {
-            	console.log(json[i]);
-                if(json[i].isAdmin === 1)
-                {
-                    continue loop;    
-                }
-                let tr=document.createElement("TR");
-                let tr1=document.createElement("TR");
-                let td1=document.createElement("TD");
-                let td2=document.createElement("TD");
-                let td3=document.createElement("BUTTON")
-                let unametxt=document.createTextNode(json[i].name);
-                let uidtxt=document.createTextNode(json[i].uid);
-                let btn=document.createTextNode("DELETE");
-                if(i==0){
-                	let unametxt=document.createTextNode("name");
-                	let uidtxt=document.createTextNode("uid");
-                	let btn=document.createTextNode("Actions");
-
-                	td1.appendChild(unametxt);
-                	td2.appendChild(uidtxt);
-                	td3.appendChild(btn);
-                }
-                td1.appendChild(unametxt);
-                td2.appendChild(uidtxt);
-                td3.appendChild(btn);
-
-                tr.appendChild(td1);
-                tr.appendChild(td2);
-                tr.appendChild(td3);
-                table.appendChild(tr);
-                table.appendChild(tr1);
-                  
-            }
-		}
-	</script>
-
 </body>
 </html>

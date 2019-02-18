@@ -24,15 +24,15 @@
     </div>
     <div class="form-group">
       <label for="link">PASSWORD:</label>
-      <input type="text" class="form-control" id="passwd" placeholder="Enter Password">
+      <input type="password" class="form-control" id="passwd" placeholder="Enter Password">
     </div>
     <div class="form-group">
       <label for="cname">NAME:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter ID">
+      <input type="text" class="form-control" id="name" placeholder="Enter Name">
     </div>
     <div class="form-group">
       <label for="cname">isADMIN ?:</label>
-      <input type="text" class="form-control" id="char" placeholder="Enter ID">
+      <input type="text" class="form-control" id="char" placeholder="Enter 0 for user or 1 for admin">
     </div>
     
     <button type="button" class="btn btn-primary" onclick="add()">ADD</button>
@@ -64,6 +64,7 @@ function add(){
   {
     console.log(one[i].uid);
   }
+  alert("Added Successfully!!");
 }
 </script>
 </body>

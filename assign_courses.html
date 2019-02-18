@@ -146,23 +146,14 @@
 
 function assign(user,course)
 {
-  let course1=JSON.parse(localStorage.getItem('coursesTable')); 
-  let user1=JSON.parse(localStorage.getItem('usersTable')); 
-  let us=user;
-  let cr=course;
- 
-
-  
-    for(let s=0;s<user1.length;s++){
-     let obj={};
-     obj["cname"]=cr;
-     obj["clink"]=cr + ".html";
-     obj["status"]=0;
-      //console.log(users[s]);
-      user1[s].courses.push(obj);
-    }
-    localStorage["usersTable"] = JSON.stringify(user1);
-      
+  let courses=JSON.parse(localStorage.getItem('coursesTable')); 
+  let users=JSON.parse(localStorage.getItem('usersTable'));
+  const indUserArray = users.findIndex(q => q.name === user);
+  const indCourseArray = courses.findIndex(q => q.cname === course);
+  let course1 = courses[indCourseArray];
+  course1.status=0;
+  users[indUserArray].courses.push(course1);
+  localStorage["usersTable"] = JSON.stringify(users);      
 }
 
 
