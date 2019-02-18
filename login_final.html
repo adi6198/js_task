@@ -36,21 +36,22 @@
       var u_name_txt= document.getElementById("uid").value;
       var u_pass_txt= document.getElementById("passwd").value;
 
-      //users = [{uid: "abc1@gmail.com", name:"admin" ,isAdmin:1 , passwd:"12345", courses:[]}];
+      //users = [{uid: "abc1@gmail.com", name:"admin" ,isAdmin:1 , passwd:"12345", courses:[]} , {uid: "user@gmail.com", name:"user" ,isAdmin:0 , passwd:"12345", courses:[]}];
 
-      //localStorage["usersTable"] = JSON.stringify(users);    
+     	//localStorage["usersTable"] = JSON.stringify(users);    
       var one = JSON.parse(localStorage.getItem('usersTable'));
       for(var i=0;i<one.length;i++)
       {  
         console.log(one[i].uid);
-        if(one[i].uid === u_name_txt && one[i].passwd === u_pass_txt){
+        if(one[i].uid === u_name_txt && one[i].passwd === u_pass_txt)
+        {
           if(one[i].isAdmin === 1){
             window.location = "dashboard.html";
-            break;
+           
           }
           else{
             window.location = "user_dashboard.html";            
-            break;
+           
           }    
         }
       }
