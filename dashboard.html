@@ -11,31 +11,47 @@
 <body>
 
 	<header id="main-header" class="bg-success text-white p-4 mb-3">
-		<div class= "container">
-			<h1 id="header-title">DASHBOARD</h1>
-		</div>
-	</header>
-
-
-    <div class="row">
-      <div class="col-lg-6">
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" style="margin-left: 500px">Users<span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="manage_users.html">Manage Users</a></li>
-              <li><a href="add_user.html">Add User</a></li>
-            </ul>
+		<div id="container">
+      <div class="row">
+        <div class="col-6">
+          <h1 id="header-title">Admin Dashboard</h1>
         </div>
-      </div>
-      <div class="col-lg-6">
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" style="margin-left: 400px">Courses<span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="add_courses.html">Add Courses</a></li>
-              <li><a href="assign_courses.html">Assign Courses</a></li>
-            </ul>
+        <div class="col-6">
+          <button type="button" class="btn btn-primary float-right" onclick="logOut()">Log Out</button>
         </div>
       </div>
     </div>
+	</header>
+
+
+  <div class="row">
+    <div class="col-lg-6">
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" style="margin-left: 500px">Users<span class="caret"></span></button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="manage_users.html">Manage Users</a></li>
+            <li><a href="add_user.html">Add User</a></li>
+          </ul>
+      </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" style="margin-left: 400px">Courses<span class="caret"></span></button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="add_courses.html">Add Courses</a></li>
+            <li><a href="assign_courses.html">Assign Courses</a></li>
+          </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function logOut(){
+      localStorage["user_info"]=JSON.stringify("");
+      window.location="login_final.html";
+    }
+  </script>
+
+
 </body>
 </html>

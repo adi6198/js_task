@@ -9,9 +9,16 @@
 </head>
 <body onload="def_gen_tab()">
 
-<header id="main-header" class="bg-success text-white p-4 mb-3">
-    <div class= "container">
-      <h1 id="header-title">MANAGE USERS</h1>
+  <header id="main-header" class="bg-success text-white p-4 mb-3">
+    <div id="container">
+      <div class="row">
+        <div class="col-6">
+          <h1 id="header-title">Manage Users</h1>
+        </div>
+        <div class="col-6">
+          <button type="button" class="btn btn-primary float-right" onclick="logOut()">Log Out</button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -103,7 +110,7 @@
     }
     return arr;
   }
-  window.getData = function(val) {
+  function getData(val) {
     let arr= [];
     val.parentNode.querySelectorAll('td').forEach(item=>{
       if (item.getAttribute('class') != "btn btn-sm btn-danger btn-block") {
@@ -113,15 +120,18 @@
     let one2 = JSON.parse(localStorage.getItem('usersTable'));
     console.log(one2);
     let one2_1=removeByAttr(one2,"uid",arr[0]);
-    /*if(one2_1.length == 1 && one2_1[0] == null){
-      localStorage.removeItem('coursesTable');
-    }*/
     console.log(one2_1);
     localStorage["usersTable"] = JSON.stringify(one2_1);
     val.parentNode.querySelectorAll('td').forEach(e => e.remove());
     val.parentNode.querySelectorAll('button').forEach(e => e.remove());
     val.remove();
   }
+
+  function logOut(){
+    localStorage["user_info"]=JSON.stringify("");
+    window.location="login_final.html";
+  }
+  
 </script>
 </body>
 </html>

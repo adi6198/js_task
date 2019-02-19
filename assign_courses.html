@@ -21,9 +21,16 @@
 </head>
 <body onload="def_gen_tab()">
 
-<header id="main-header" class="bg-success text-white p-4 mb-3">
-    <div class= "container">
-      <h1 id="header-title">ASSIGN COURSES</h1>
+  <header id="main-header" class="bg-success text-white p-4 mb-3">
+    <div id="container">
+      <div class="row">
+        <div class="col-6">
+          <h1 id="header-title">Assign Courses</h1>
+        </div>
+        <div class="col-6">
+          <button type="button" class="btn btn-primary float-right" onclick="logOut()">Log Out</button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -156,7 +163,10 @@ function assign(user,course)
   localStorage["usersTable"] = JSON.stringify(users);      
 }
 
-
+function logOut(){
+  localStorage["user_info"]=JSON.stringify("");
+  window.location="login_final.html";
+}
   
 </script>
 
